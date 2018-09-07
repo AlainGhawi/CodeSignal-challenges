@@ -4,7 +4,7 @@ Given a string, find out if its characters can be rearranged to form a palindrom
 
 //I did it with a dictionary but you can also solve it by populating a count array 
 //and check if there are more than 2 odd numbers in your string
-
+//Beginner level
 bool palindromeRearranging(string s) {
     var d = new Dictionary<char,int>();
     for(int i=0; i<s.Length;i++){
@@ -22,3 +22,14 @@ bool palindromeRearranging(string s) {
     }
     return true;
 }
+
+//Advanced level: I'll some LINQ to make it more elegant
+//Basically we're searching if there are 2 characters that are odd numbers in our string
+
+bool palindromeRearranging(string s) {
+    return s.GroupBy(c => c)
+            .Where(g => g.Count() % 2 == 1)
+            .Count() <= 1;
+}
+
+
