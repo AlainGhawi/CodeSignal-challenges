@@ -1,0 +1,24 @@
+/*
+Given a string, find out if its characters can be rearranged to form a palindrome.
+*/
+
+//I did it with a dictionary but you can also solve it by populating a count array 
+//and check if there are more than 2 odd numbers in your string
+
+bool palindromeRearranging(string s) {
+    var d = new Dictionary<char,int>();
+    for(int i=0; i<s.Length;i++){
+        if(!d.ContainsKey(s[i]))
+            d.Add(s[i],1);
+        else
+            d[s[i]]+=1;
+    }    
+    int c=0;
+    foreach(var item in d){
+        if(item.Value%2==1)
+            c++;  
+        if(c>=2)
+            return false;
+    }
+    return true;
+}
